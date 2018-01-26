@@ -8,6 +8,10 @@ public class playerMovement : MonoBehaviour {
     float acceleration = 10f;
     [SerializeField]
     float maxSpeed = 50f;
+    [SerializeField]
+    bool flipXAxis = false;
+    [SerializeField]
+    bool flipZAxis = false;
 
     Rigidbody rb;                       // Player rigidbody
     Vector3 movDir = Vector3.zero;      // Vector direction where player moves
@@ -19,7 +23,10 @@ public class playerMovement : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
-        movDir = new Vector3(Input.GetAxisRaw("XMovement"), 0, Input.GetAxisRaw("ZMovement")).normalized;
+        // Direction where player moves, axes flipping
+        movDir = new Vector3(Input.GetAxisRaw("XMovement") * (flipXAxis ? -1 : 1), 0, Input.GetAxisRaw("ZMovement") * (flipZAxis ? -1 : 1)).normalized;
+
+        // Movement changes (applying force)
         rb.AddForce(movDir * acceleration * rb.mass);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 	}
