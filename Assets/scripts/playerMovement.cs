@@ -9,8 +9,8 @@ public class playerMovement : MonoBehaviour {
     [SerializeField]
     float maxSpeed = 50f;
 
-    Rigidbody rb;
-    Vector3 movDir = Vector3.zero;
+    Rigidbody rb;                       // Player rigidbody
+    Vector3 movDir = Vector3.zero;      // Vector direction where player moves
 
     void Start ()
     {

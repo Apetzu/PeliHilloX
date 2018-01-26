@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour {
 
-	void Start ()
+    [SerializeField]
+    float smoothSpeed = 10f;
+    [SerializeField]
+    Transform player;
+
+    Vector3 currentVelocity = Vector3.zero;
+    Vector3 startPos;
+
+    void Start()
     {
-		
-	}
-	
-	void Update ()
+        startPos = transform.position;      // Camera starting position
+    }
+
+    void Update ()
     {
-		
+        transform.position = Vector3.SmoothDamp(transform.position, player.position + startPos, ref currentVelocity, smoothSpeed);      // Smooth camera movement
 	}
 }
