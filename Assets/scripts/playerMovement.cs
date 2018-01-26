@@ -17,7 +17,7 @@ public class playerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 	}
 	
-	void Update ()
+	void FixedUpdate ()
     {
         movDir = new Vector3(Input.GetAxisRaw("XMovement"), 0, Input.GetAxisRaw("ZMovement")).normalized;
         rb.AddForce(movDir * acceleration * rb.mass);

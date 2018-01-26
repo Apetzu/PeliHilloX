@@ -17,7 +17,7 @@ public class cameraController : MonoBehaviour {
         startPos = transform.position;      // Camera starting position
     }
 
-    void Update ()
+    void FixedUpdate ()
     {
         transform.position = Vector3.SmoothDamp(transform.position, player.position + startPos, ref currentVelocity, smoothSpeed);      // Smooth camera movement
 	}
