@@ -25,10 +25,13 @@ public class NormieAI : MonoBehaviour {
     float starthealth;
 
 	Collider[] InfectedDetected;
+    public Animator anime;
+    public float idleLimit;
 
 	void Start () 
 	{
         starthealth = health;
+        wanderTimer = Random.Range(1.5f,3f);
 		agent = GetComponent<NavMeshAgent> ();
 		timer = wanderTimer;
 	}
@@ -36,13 +39,15 @@ public class NormieAI : MonoBehaviour {
 	void Update () 
 	{
 		InfectedDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Normies") | 1));
-
+ 
 		if (InfectedDetected.Length > 0) 
 		{
+            
             Flee();
 		}
         else 
 		{
+            
             timer += Time.deltaTime;
 
             if (timer >= wanderTimer) {
@@ -51,10 +56,17 @@ public class NormieAI : MonoBehaviour {
                 timer = 0;
             }
 		}
+        if(agent.velocity.magnitude < idleLimit)
+        {
+            anime.SetInteger("AnimPos",0);
+        }
+        else
+            anime.SetInteger("AnimPos",1);
 	}
 
     void Flee()
     {
+        anime.SetInteger("AnimPos",2);
         Vector3 FleeDirection = -(InfectedDetected[0].transform.position - transform.position);
         transform.rotation = Quaternion.LookRotation(new Vector3(FleeDirection.x, 0, FleeDirection.z));
         Vector3 FleeTo = transform.position + transform.forward * multiplyBy;
