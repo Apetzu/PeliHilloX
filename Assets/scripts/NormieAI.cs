@@ -36,12 +36,6 @@ public class NormieAI : MonoBehaviour {
 		if (InfectedDetected.Length > 0) 
 		{
             Flee();
-            /*
-            Vector3 fleeDir = -(InfectedDetected[0].transform.position + transform.position).normalized;
-            //Debug.Log(InfectedDetected[0].transform.position);
-            //Debug.Log((InfectedDetected[0].transform.position - transform.position).normalized);
-            agent.SetDestination (fleeDir * 10);
-            */
 		}
         else 
 		{
@@ -53,7 +47,7 @@ public class NormieAI : MonoBehaviour {
                 timer = 0;
             }
 		}
-        if (health < starthealth)
+        if (health < starthealth)   
         {
             agent.speed = fasterSpeed;
         }
@@ -62,17 +56,18 @@ public class NormieAI : MonoBehaviour {
             death();
         }
 	}
+
     void Flee()
     {
-        //startTransform = transform;
-        transform.rotation = Quaternion.LookRotation(transform.position - InfectedDetected[0].transform.position);
+        Vector3 FleeDirection = -(InfectedDetected[0].transform.position - transform.position);
+        transform.rotation = Quaternion.LookRotation(new Vector3(FleeDirection.x, 0, FleeDirection.z));
         Vector3 FleeTo = transform.position + transform.forward * multiplyBy;
         NavMeshHit navHitFlee;
         NavMesh.SamplePosition(FleeTo, out navHitFlee, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
         agent.SetDestination(navHitFlee.position);
     }
 
-	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
+	Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
 	{
 		Vector3 randDirection = Random.insideUnitSphere * dist;
 		randDirection += origin;
@@ -80,10 +75,12 @@ public class NormieAI : MonoBehaviour {
 		NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
 		return navHit.position;
 	}
+
     public void takeDamage()
     {
         health--;
     }
+
     void death()
     {
         
