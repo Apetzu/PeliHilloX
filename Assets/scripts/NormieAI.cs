@@ -5,20 +5,24 @@ using UnityEngine.AI;
 
 public class NormieAI : MonoBehaviour {
 
-    private Transform startTransform;
     public float fleeRadius;
-	public float wanderRadius;
-	public float wanderTimer;
-	public float DetectorRadius;
-	private Transform target;
-	private NavMeshAgent agent;
-	private float timer;
-	public bool InfectedNearby = false;
+    public float wanderRadius;
+    public float wanderTimer;
+    public float DetectorRadius;
+    public bool InfectedNearby = false;
     public float multiplyBy;
-	RaycastHit hit;
-    public float health;
-    float starthealth;
     public float fasterSpeed;
+    public float health;
+
+    [SerializeField]
+    Transform InfectedAIPrefab;
+
+    Transform startTransform;
+	Transform target;
+	NavMeshAgent agent;
+	float timer;
+	RaycastHit hit;
+    float starthealth;
 
 	Collider[] InfectedDetected;
 
@@ -47,14 +51,6 @@ public class NormieAI : MonoBehaviour {
                 timer = 0;
             }
 		}
-        if (health < starthealth)   
-        {
-            agent.speed = fasterSpeed;
-        }
-        if(health < 1)
-        {
-            death();
-        }
 	}
 
     void Flee()
@@ -79,10 +75,23 @@ public class NormieAI : MonoBehaviour {
     public void takeDamage()
     {
         health--;
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+        agent.speed = fasterSpeed;
     }
 
     void death()
     {
         
+    }
+
+    public void ChangeToInfected()
+    {
+        Instantiate(InfectedAIPrefab, transform.position, InfectedAIPrefab.transform.rotation);
+        Destroy(this.gameObject);
     }
 }

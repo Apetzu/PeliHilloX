@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1337022015244170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.34, y: 2, z: 2.97}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,8 +116,10 @@ MonoBehaviour:
   DetectorRadius: 10
   InfectedNearby: 0
   multiplyBy: 5
-  health: 2
   fasterSpeed: 4.5
+  health: 2
+  InfectedAIPrefab: {fileID: 4710110633338108, guid: fdb3aea00ea733e4e86a687810bbb75e,
+    type: 2}
 --- !u!136 &136587226668466078
 CapsuleCollider:
   m_ObjectHideFlags: 1

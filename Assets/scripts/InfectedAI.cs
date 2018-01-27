@@ -8,15 +8,16 @@ public class InfectedAI : MonoBehaviour {
 	public float wanderRadius;
 	public float wanderTimer;
 	public float DetectorRadius;
-	private Transform target;
-	private NavMeshAgent agent;
-	private float timer;
-	public bool NormieNearby = false;
+    public bool NormieNearby = false;
+    public float damage;
+
+    Transform target;
+	NavMeshAgent agent;
+	float timer;
 	GameObject NormieTarget;
 	RaycastHit hit;
-    private GameObject NormieScript;
+    GameObject NormieScript;
 	Collider[] NormieDetected;
-    public float damage;
 
 	void Start () 
 	{
@@ -47,7 +48,7 @@ public class InfectedAI : MonoBehaviour {
 	}
 
 
-	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
+	Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
 	{
 		Vector3 randDirection = Random.insideUnitSphere * dist;
 		randDirection += origin;
@@ -55,6 +56,7 @@ public class InfectedAI : MonoBehaviour {
 		NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
 		return navHit.position;
 	}
+
     void OnCollisionEnter (Collision other)
     {
         if (other.gameObject.tag == "Normie")

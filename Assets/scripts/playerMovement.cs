@@ -30,4 +30,12 @@ public class playerMovement : MonoBehaviour {
         rb.AddForce(movDir * acceleration * rb.mass);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Normie")
+        {
+            collision.gameObject.GetComponent<NormieAI>().ChangeToInfected();
+        }
+    }
 }
