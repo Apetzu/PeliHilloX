@@ -11,7 +11,9 @@ public class NormieAI : MonoBehaviour {
     public float DetectorRadius;
     public bool InfectedNearby = false;
     public float multiplyBy;
+    public float fleeingSpeed;
     public float fasterSpeed;
+    float normalSpeed;
     public float health;
 
     public MeshFilter mess;
@@ -42,6 +44,7 @@ public class NormieAI : MonoBehaviour {
         starthealth = health;
         wanderTimer = Random.Range(1.5f,3f);
 		agent = GetComponent<NavMeshAgent> ();
+        normalSpeed = agent.speed;
 		timer = wanderTimer;
 	}
 
@@ -56,6 +59,7 @@ public class NormieAI : MonoBehaviour {
 		}
         else 
 		{
+            agent.speed = normalSpeed;
             mess.mesh = passiveHuman;
             messRend.materials = new Material[2] { passiveHumanFront, passiveHumanBack};
             timer += Time.deltaTime;
@@ -76,6 +80,7 @@ public class NormieAI : MonoBehaviour {
 
     void Flee()
     {
+        agent.speed = fleeingSpeed;
         anime.SetInteger("AnimPos",2);
         mess.mesh = fleeingHuman;
         messRend.materials = new Material[2] { fleeingHumanFront, fleeingHumanBack};
@@ -105,7 +110,7 @@ public class NormieAI : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        agent.speed = fasterSpeed;
+        fleeingSpeed = fasterSpeed;
     }
 
     void death()

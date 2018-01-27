@@ -205,7 +205,8 @@ MonoBehaviour:
   DetectorRadius: 10
   InfectedNearby: 0
   multiplyBy: 5
-  fasterSpeed: 6
+  fleeingSpeed: 6
+  fasterSpeed: 7
   health: 2
   mess: {fileID: 33414214046865406}
   messRend: {fileID: 23523255153314058}

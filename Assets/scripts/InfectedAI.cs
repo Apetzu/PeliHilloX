@@ -20,6 +20,15 @@ public class InfectedAI : MonoBehaviour {
     GameObject NormieScript;
 	Collider[] NormieDetected;
 
+    public MeshFilter mess;
+    public MeshRenderer messRend;
+    public Mesh passiveInfected;
+    public Mesh chasingInfected;
+    public Material passiveInfectedFront;
+    public Material passiveInfectedBack;
+    public Material chasingInfectedFront;
+    public Material chasingInfectedBack;
+
 	void Start () 
 	{
 		agent = GetComponent<NavMeshAgent> ();
@@ -33,6 +42,8 @@ public class InfectedAI : MonoBehaviour {
 
         if (NormieDetected.Length > 0) 
         {
+            mess.mesh = chasingInfected;
+            messRend.materials = new Material[2] { chasingInfectedFront, chasingInfectedBack};
             Debug.Log ("Braainsss!");
             agent.speed = chaseSpeed;
             Vector3 newPos = NormieDetected[0].transform.position;
@@ -40,6 +51,8 @@ public class InfectedAI : MonoBehaviour {
         }
         else 
         {
+            mess.mesh = passiveInfected;
+            messRend.materials = new Material[2] { passiveInfectedFront, passiveInfectedBack};
             timer += Time.deltaTime;
             agent.speed = normalSpeed;
             if (timer >= wanderTimer) {
