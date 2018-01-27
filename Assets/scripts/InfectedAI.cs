@@ -14,8 +14,9 @@ public class InfectedAI : MonoBehaviour {
 	public bool NormieNearby = false;
 	GameObject NormieTarget;
 	RaycastHit hit;
-
+    private GameObject NormieScript;
 	Collider[] NormieDetected;
+    public float damage;
 
 	void Start () 
 	{
@@ -54,4 +55,12 @@ public class InfectedAI : MonoBehaviour {
 		NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
 		return navHit.position;
 	}
+    void OnCollisionEnter (Collision other)
+    {
+        if (other.gameObject.tag == "Normie")
+        {
+            NormieAI normieAI = other.gameObject.GetComponent<NormieAI>();
+            normieAI.takeDamage();
+        }
+    }
 }

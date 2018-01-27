@@ -16,11 +16,15 @@ public class NormieAI : MonoBehaviour {
 	public bool InfectedNearby = false;
     public float multiplyBy;
 	RaycastHit hit;
+    public float health;
+    float starthealth;
+    public float fasterSpeed;
 
 	Collider[] InfectedDetected;
 
 	void Start () 
 	{
+        starthealth = health;
 		agent = GetComponent<NavMeshAgent> ();
 		timer = wanderTimer;
 	}
@@ -49,6 +53,14 @@ public class NormieAI : MonoBehaviour {
                 timer = 0;
             }
 		}
+        if (health < starthealth)
+        {
+            agent.speed = fasterSpeed;
+        }
+        if(health < 1)
+        {
+            death();
+        }
 	}
     void Flee()
     {
@@ -56,7 +68,7 @@ public class NormieAI : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(transform.position - InfectedDetected[0].transform.position);
         Vector3 FleeTo = transform.position + transform.forward * multiplyBy;
         NavMeshHit navHitFlee;
-        NavMesh.SamplePosition(FleeTo, out navHitFlee, 5, 1 << NavMesh.GetAreaFromName("Default"));
+        NavMesh.SamplePosition(FleeTo, out navHitFlee, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
         agent.SetDestination(navHitFlee.position);
     }
 
@@ -68,5 +80,12 @@ public class NormieAI : MonoBehaviour {
 		NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
 		return navHit.position;
 	}
-
+    public void takeDamage()
+    {
+        health--;
+    }
+    void death()
+    {
+        
+    }
 }
