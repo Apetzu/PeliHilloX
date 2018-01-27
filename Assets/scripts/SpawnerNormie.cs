@@ -5,28 +5,34 @@ using UnityEngine.AI;
 
 public class SpawnerNormie : MonoBehaviour 
 {
-    private NavMeshAgent agent;
-    public float spawnLimit;
-    float spawnedAmount;
-    public GameObject Normie;
-    public float spawnRadius;
-	void Start () 
+    [SerializeField]
+    float spawnLimit;
+    [SerializeField]
+    GameObject Normie;
+    [SerializeField]
+    float MapXSize = 10;
+    [SerializeField]
+    float MapZSize = 10;
+    [SerializeField]
+    float navMeshSearchDist = 10;
+
+    void Start () 
     {
-        agent = GetComponent<NavMeshAgent> ();
+        Debug.DrawLine(new Vector3(transform.position.x - MapXSize / 2, 1, 0), new Vector3(transform.position.x + MapXSize / 2, 1, 0), Color.red, 10f);
+        Debug.DrawLine(new Vector3(0, 1, transform.position.z - MapZSize / 2), new Vector3(0, 1, transform.position.z + MapZSize / 2), Color.blue, 10f);
 
         for (int i = 0; i < spawnLimit; i++)
         {
-            Vector3 newPos = RandomNavSphere (transform.position, spawnRadius, -1);
+            Vector3 newPos = RandomNavPos(MapXSize, MapZSize, navMeshSearchDist, -1);
             Instantiate(Normie, newPos, Normie.transform.rotation);
         }
 	}
-        
-    Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
+
+    Vector3 RandomNavPos(float xSize, float zSize, float dist, int layermask)
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-        randDirection += origin;
         NavMeshHit navHit;
-        NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
+        NavMesh.SamplePosition(new Vector3(Random.Range(transform.position.x - xSize / 2, transform.position.x + xSize / 2), 0,
+                                           Random.Range(transform.position.z - zSize / 2, transform.position.z + zSize / 2)), out navHit, dist, layermask);
         return navHit.position;
     }
 }

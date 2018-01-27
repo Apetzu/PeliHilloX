@@ -29,6 +29,14 @@ public class playerMovement : MonoBehaviour {
         // Movement changes (applying force)
         rb.AddForce(movDir * acceleration * rb.mass);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
+        if (movDir != Vector3.zero)
+        {
+            if (movDir.x > 1)
+            {
+
+            }
+        }
 	}
 
     void OnCollisionEnter(Collision collision)
