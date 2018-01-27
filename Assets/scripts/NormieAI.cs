@@ -14,6 +14,14 @@ public class NormieAI : MonoBehaviour {
     public float fasterSpeed;
     public float health;
 
+    public MeshFilter mess;
+    public MeshRenderer messRend;
+    public Mesh passiveHuman;
+    public Mesh fleeingHuman;
+    public Material passiveHumanFront;
+    public Material passiveHumanBack;
+    public Material fleeingHumanFront;
+    public Material fleeingHumanBack;
     [SerializeField]
     Transform InfectedAIPrefab;
 
@@ -30,6 +38,7 @@ public class NormieAI : MonoBehaviour {
 
 	void Start () 
 	{
+        
         starthealth = health;
         wanderTimer = Random.Range(1.5f,3f);
 		agent = GetComponent<NavMeshAgent> ();
@@ -47,7 +56,8 @@ public class NormieAI : MonoBehaviour {
 		}
         else 
 		{
-            
+            mess.mesh = passiveHuman;
+            messRend.materials = new Material[2] { passiveHumanFront, passiveHumanBack};
             timer += Time.deltaTime;
 
             if (timer >= wanderTimer) {
@@ -67,6 +77,8 @@ public class NormieAI : MonoBehaviour {
     void Flee()
     {
         anime.SetInteger("AnimPos",2);
+        mess.mesh = fleeingHuman;
+        messRend.materials = new Material[2] { fleeingHumanFront, fleeingHumanBack};
         Vector3 FleeDirection = -(InfectedDetected[0].transform.position - transform.position);
         transform.rotation = Quaternion.LookRotation(new Vector3(FleeDirection.x, 0, FleeDirection.z));
         Vector3 FleeTo = transform.position + transform.forward * multiplyBy;
