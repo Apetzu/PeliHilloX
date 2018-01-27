@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NormieAI : MonoBehaviour {
 
+    private Transform startTransform;
     public float fleeRadius;
 	public float wanderRadius;
 	public float wanderTimer;
@@ -30,8 +31,13 @@ public class NormieAI : MonoBehaviour {
 
 		if (InfectedDetected.Length > 0) 
 		{
-            Vector3 fleeDir = -(InfectedDetected[0].transform.position - transform.position).normalized;
+            Flee();
+            /*
+            Vector3 fleeDir = -(InfectedDetected[0].transform.position + transform.position).normalized;
+            //Debug.Log(InfectedDetected[0].transform.position);
+            //Debug.Log((InfectedDetected[0].transform.position - transform.position).normalized);
             agent.SetDestination (fleeDir * 10);
+            */
 		}
         else 
 		{
@@ -44,7 +50,15 @@ public class NormieAI : MonoBehaviour {
             }
 		}
 	}
-
+    void Flee()
+    {
+        //startTransform = transform;
+        transform.rotation = Quaternion.LookRotation(transform.position - InfectedDetected[0].transform.position);
+        Vector3 FleeTo = transform.position + transform.forward * multiplyBy;
+        NavMeshHit navHitFlee;
+        NavMesh.SamplePosition(FleeTo, out navHitFlee, 5, 1 << NavMesh.GetAreaFromName("Default"));
+        agent.SetDestination(navHitFlee.position);
+    }
 
 	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) 
 	{

@@ -1474,7 +1474,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4835416326154104, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 55.3
+      value: 84.28
       objectReference: {fileID: 0}
     - target: {fileID: 4835416326154104, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1482,7 +1482,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4835416326154104, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -27.3
+      value: -9.68
       objectReference: {fileID: 0}
     - target: {fileID: 4835416326154104, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1535,6 +1535,16 @@ Prefab:
         type: 2}
       propertyPath: wanderTimer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114266651891620352, guid: 18e13b96902b204469e967a5f3e23cbf,
+        type: 2}
+      propertyPath: fleeRadius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114266651891620352, guid: 18e13b96902b204469e967a5f3e23cbf,
+        type: 2}
+      propertyPath: multiplyBy
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
