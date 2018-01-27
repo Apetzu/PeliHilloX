@@ -10,7 +10,8 @@ public class InfectedAI : MonoBehaviour {
 	public float DetectorRadius;
     public bool NormieNearby = false;
     public float damage;
-
+    public float chaseSpeed;
+    float normalSpeed;
     Transform target;
 	NavMeshAgent agent;
 	float timer;
@@ -22,23 +23,25 @@ public class InfectedAI : MonoBehaviour {
 	void Start () 
 	{
 		agent = GetComponent<NavMeshAgent> ();
+        normalSpeed = agent.speed;
 		timer = wanderTimer;
 	}
 
 	void Update () 
 	{
-		NormieDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1));
+        NormieDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1 | 1 << LayerMask.NameToLayer ("Player")));
 
         if (NormieDetected.Length > 0) 
         {
             Debug.Log ("Braainsss!");
+            agent.speed = chaseSpeed;
             Vector3 newPos = NormieDetected[0].transform.position;
             agent.SetDestination (newPos);
         }
         else 
         {
             timer += Time.deltaTime;
-
+            agent.speed = normalSpeed;
             if (timer >= wanderTimer) {
                 Vector3 newPos = RandomNavSphere (transform.position, wanderRadius, -1);
                 agent.SetDestination (newPos);
