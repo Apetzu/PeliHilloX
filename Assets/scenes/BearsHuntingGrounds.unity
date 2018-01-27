@@ -921,8 +921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLimit: 200
   Normie: {fileID: 1337022015244170, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
-  MapXSize: 10
-  MapZSize: 10
+  MapXSize: 50
+  MapZSize: 50
   navMeshSearchDist: 10
   PeopleCount: {fileID: 261543863}
 --- !u!1001 &883620872

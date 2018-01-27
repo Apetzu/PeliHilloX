@@ -26,7 +26,8 @@ public class NormieAI : MonoBehaviour {
     public Material fleeingHumanBack;
     [SerializeField]
     Transform InfectedAIPrefab;
-
+    public GameObject infection;
+    public GameObject bloodSplat;
     Transform startTransform;
 	Transform target;
 	NavMeshAgent agent;
@@ -107,6 +108,8 @@ public class NormieAI : MonoBehaviour {
 
         if (health <= 0)
         {
+            GameObject BloodPart = (GameObject) Instantiate(bloodSplat, transform.position, bloodSplat.transform.rotation);
+            Destroy(BloodPart, 5f);
             Destroy(this.gameObject);
         }
 
@@ -120,6 +123,9 @@ public class NormieAI : MonoBehaviour {
 
     public void ChangeToInfected()
     {
+
+        GameObject InfectionPart = (GameObject) Instantiate(infection, transform.position, infection.transform.rotation);
+        Destroy(InfectionPart, 5f);
         Instantiate(InfectedAIPrefab, transform.position, InfectedAIPrefab.transform.rotation);
         Destroy(this.gameObject);
     }

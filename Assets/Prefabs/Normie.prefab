@@ -218,6 +218,8 @@ MonoBehaviour:
   fleeingHumanBack: {fileID: 2100000, guid: d5dca3856cd65ef499121b0bb5948307, type: 2}
   InfectedAIPrefab: {fileID: 4710110633338108, guid: fdb3aea00ea733e4e86a687810bbb75e,
     type: 2}
+  infection: {fileID: 1647081376028722, guid: 7e2b9e27cd75efa49988535a54d94864, type: 2}
+  bloodSplat: {fileID: 1067030885800960, guid: e21a177de179f10469b6511f296f818b, type: 2}
   anime: {fileID: 95404960169245026}
   idleLimit: 0.6
 --- !u!136 &136587226668466078
