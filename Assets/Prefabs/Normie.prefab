@@ -205,16 +205,16 @@ MonoBehaviour:
   DetectorRadius: 10
   InfectedNearby: 0
   multiplyBy: 5
-  fasterSpeed: 4.5
+  fasterSpeed: 6
   health: 2
   mess: {fileID: 33414214046865406}
   messRend: {fileID: 23523255153314058}
   passiveHuman: {fileID: 4300000, guid: 35b803af966026d4b9c98eeba90d8c51, type: 3}
-  fleeingHuman: {fileID: 0}
+  fleeingHuman: {fileID: 4300000, guid: d0e9d1b2e1f494f4597c3bebb8767012, type: 3}
   passiveHumanFront: {fileID: 2100000, guid: 7e7227f891b177c45b3c2e2925c13577, type: 2}
   passiveHumanBack: {fileID: 2100000, guid: 9c5a8598ed65bff419f8f51bc4a2bd1e, type: 2}
-  fleeingHumanFront: {fileID: 0}
-  fleeingHumanBack: {fileID: 0}
+  fleeingHumanFront: {fileID: 2100000, guid: 5ec117561fc26004db58a16fad508082, type: 2}
+  fleeingHumanBack: {fileID: 2100000, guid: d5dca3856cd65ef499121b0bb5948307, type: 2}
   InfectedAIPrefab: {fileID: 4710110633338108, guid: fdb3aea00ea733e4e86a687810bbb75e,
     type: 2}
   anime: {fileID: 95404960169245026}
