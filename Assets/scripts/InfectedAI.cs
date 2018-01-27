@@ -19,7 +19,7 @@ public class InfectedAI : MonoBehaviour {
 	RaycastHit hit;
     GameObject NormieScript;
 	Collider[] NormieDetected;
-
+    public Animator anime;
     public MeshFilter mess;
     public MeshRenderer messRend;
     public Mesh passiveInfected;
@@ -28,6 +28,8 @@ public class InfectedAI : MonoBehaviour {
     public Material passiveInfectedBack;
     public Material chasingInfectedFront;
     public Material chasingInfectedBack;
+
+    public float idleLimit;
 
 	void Start () 
 	{
@@ -42,6 +44,7 @@ public class InfectedAI : MonoBehaviour {
 
         if (NormieDetected.Length > 0) 
         {
+            anime.SetInteger("InfectedAnim",2);
             mess.mesh = chasingInfected;
             messRend.materials = new Material[2] { chasingInfectedFront, chasingInfectedBack};
             Debug.Log ("Braainsss!");
@@ -61,6 +64,12 @@ public class InfectedAI : MonoBehaviour {
                 timer = 0;
             }
         }
+        if(agent.velocity.magnitude < idleLimit)
+        {
+            anime.SetInteger("InfectedAnim",0);
+        }
+        else
+            anime.SetInteger("InfectedAnim",1);
 	}
 
 
