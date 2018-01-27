@@ -15,6 +15,8 @@ public class InfectedAI : MonoBehaviour {
     Transform target;
 	NavMeshAgent agent;
 	float timer;
+    float hitTimer;
+    public float timeToHit;
 	GameObject NormieTarget;
 	RaycastHit hit;
     GameObject NormieScript;
@@ -36,6 +38,7 @@ public class InfectedAI : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent> ();
         normalSpeed = agent.speed;
 		timer = wanderTimer;
+        hitTimer = timeToHit;
 	}
 
 	void Update () 
@@ -82,12 +85,17 @@ public class InfectedAI : MonoBehaviour {
 		return navHit.position;
 	}
 
-    void OnCollisionEnter (Collision other)
+    void OnCollisionStay (Collision other)
     {
         if (other.gameObject.tag == "Normie")
         {
-            NormieAI normieAI = other.gameObject.GetComponent<NormieAI>();
-            normieAI.takeDamage();
+            hitTimer += Time.deltaTime;
+            if (hitTimer >= timeToHit)
+            {
+                NormieAI normieAI = other.gameObject.GetComponent<NormieAI>();
+                normieAI.takeDamage();
+                hitTimer = 0;
+            }
         }
     }
 }

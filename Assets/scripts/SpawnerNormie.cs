@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class SpawnerNormie : MonoBehaviour 
 {
@@ -15,6 +16,9 @@ public class SpawnerNormie : MonoBehaviour
     float MapZSize = 10;
     [SerializeField]
     float navMeshSearchDist = 10;
+    public Text PeopleCount;
+    int InfectedAmount;
+    int NormieAmount;
 
     void Start () 
     {
@@ -26,8 +30,14 @@ public class SpawnerNormie : MonoBehaviour
             Vector3 newPos = RandomNavPos(MapXSize, MapZSize, navMeshSearchDist, -1);
             Instantiate(Normie, newPos, Normie.transform.rotation);
         }
-	}
 
+	}
+    void Update()
+    {
+        InfectedAmount = GameObject.FindGameObjectsWithTag("Infected").Length;
+        NormieAmount = GameObject.FindGameObjectsWithTag("Normie").Length;
+        PeopleCount.text = "Infected: " + InfectedAmount + "     Normies: "+ NormieAmount;
+    }
     Vector3 RandomNavPos(float xSize, float zSize, float dist, int layermask)
     {
         NavMeshHit navHit;
