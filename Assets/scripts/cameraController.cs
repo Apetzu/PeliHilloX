@@ -22,4 +22,9 @@ public class cameraController : MonoBehaviour {
         // Smooth camera movement
         transform.position = Vector3.SmoothDamp(transform.position, player.position + startPos, ref currentVelocity, smoothSpeed);
 	}
+
+    void Update()
+    {
+        
+    }
 }

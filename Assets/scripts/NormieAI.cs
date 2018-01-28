@@ -55,11 +55,19 @@ public class NormieAI : MonoBehaviour {
  
 		if (InfectedDetected.Length > 0) 
 		{
-            
             Flee();
 		}
-        else 
+        else
 		{
+            if (agent.velocity.magnitude < idleLimit)
+            {
+                anime.SetInteger("AnimPos", 0);
+            }
+            else
+            {
+                anime.SetInteger("AnimPos", 1);
+            }
+
             agent.speed = normalSpeed;
             mess.mesh = passiveHuman;
             messRend.materials = new Material[2] { passiveHumanFront, passiveHumanBack};
@@ -71,12 +79,6 @@ public class NormieAI : MonoBehaviour {
                 timer = 0;
             }
 		}
-        if(agent.velocity.magnitude < idleLimit)
-        {
-            anime.SetInteger("AnimPos",0);
-        }
-        else
-            anime.SetInteger("AnimPos",1);
 	}
 
     void Flee()

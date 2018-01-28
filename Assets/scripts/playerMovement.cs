@@ -12,6 +12,10 @@ public class playerMovement : MonoBehaviour {
     bool flipXAxis = false;
     [SerializeField]
     bool flipZAxis = false;
+    [SerializeField]
+    bool flipXZAxes = false;
+    [SerializeField]
+    float rotationSmoothness = 5;
 
     Rigidbody rb;                       // Player rigidbody
     Vector3 movDir = Vector3.zero;      // Vector direction where player moves
@@ -23,19 +27,25 @@ public class playerMovement : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
-        // Direction where player moves, axes flipping
-        movDir = new Vector3(Input.GetAxisRaw("XMovement") * (flipXAxis ? -1 : 1), 0, Input.GetAxisRaw("ZMovement") * (flipZAxis ? -1 : 1)).normalized;
+        if (!flipXZAxes)
+        {
+            // Direction where player moves, axes flipping
+            movDir = new Vector3(Input.GetAxisRaw("XMovement") * (flipXAxis ? -1 : 1), 0, Input.GetAxisRaw("ZMovement") * (flipZAxis ? -1 : 1)).normalized;
+        }
+        else
+        {
+            // Direction where player moves, axes flipping
+            movDir = new Vector3(Input.GetAxisRaw("ZMovement") * (flipXAxis ? -1 : 1), 0, Input.GetAxisRaw("XMovement") * (flipZAxis ? -1 : 1)).normalized;
+        }
 
         // Movement changes (applying force)
         rb.AddForce(movDir * acceleration * rb.mass);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
+        // Player smooth rotation
         if (movDir != Vector3.zero)
         {
-            if (movDir.x > 1)
-            {
-
-            }
+            rb.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movDir), Time.fixedDeltaTime * rotationSmoothness));
         }
 	}
 

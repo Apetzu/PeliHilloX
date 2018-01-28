@@ -32,16 +32,18 @@ public class SpawnerNormie : MonoBehaviour
         }
 
 	}
+
     void Update()
     {
         InfectedAmount = GameObject.FindGameObjectsWithTag("Infected").Length;
         NormieAmount = GameObject.FindGameObjectsWithTag("Normie").Length;
         PeopleCount.text = "Infected: " + InfectedAmount + "     Normies: "+ NormieAmount;
     }
+
     Vector3 RandomNavPos(float xSize, float zSize, float dist, int layermask)
     {
         NavMeshHit navHit;
-        NavMesh.SamplePosition(new Vector3(Random.Range(transform.position.x - xSize / 2, transform.position.x + xSize / 2), 0,
+        NavMesh.SamplePosition(new Vector3(Random.Range(transform.position.x - xSize / 2, transform.position.x + xSize / 2), 2,
                                            Random.Range(transform.position.z - zSize / 2, transform.position.z + zSize / 2)), out navHit, dist, layermask);
         return navHit.position;
     }

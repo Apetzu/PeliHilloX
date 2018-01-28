@@ -50,13 +50,19 @@ public class InfectedAI : MonoBehaviour {
             anime.SetInteger("InfectedAnim",2);
             mess.mesh = chasingInfected;
             messRend.materials = new Material[2] { chasingInfectedFront, chasingInfectedBack};
-            Debug.Log ("Braainsss!");
             agent.speed = chaseSpeed;
             Vector3 newPos = NormieDetected[0].transform.position;
             agent.SetDestination (newPos);
         }
         else 
         {
+            if (agent.velocity.magnitude < idleLimit)
+            {
+                anime.SetInteger("InfectedAnim", 0);
+            }
+            else
+                anime.SetInteger("InfectedAnim", 1);
+
             mess.mesh = passiveInfected;
             messRend.materials = new Material[2] { passiveInfectedFront, passiveInfectedBack};
             timer += Time.deltaTime;
@@ -67,12 +73,6 @@ public class InfectedAI : MonoBehaviour {
                 timer = 0;
             }
         }
-        if(agent.velocity.magnitude < idleLimit)
-        {
-            anime.SetInteger("InfectedAnim",0);
-        }
-        else
-            anime.SetInteger("InfectedAnim",1);
 	}
 
 
