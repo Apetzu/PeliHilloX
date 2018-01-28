@@ -41,12 +41,12 @@ public class SpawnerNormie : MonoBehaviour
     {
         InfectedAmount = GameObject.FindGameObjectsWithTag("Infected").Length;
         NormieAmount = GameObject.FindGameObjectsWithTag("Normie").Length;
-        PeopleCount.text = "X:" + NormieAmount + "\n\nX:" + InfectedAmount + "\n\nX:" + (spawnLimit - InfectedAmount - NormieAmount);
+        PeopleCount.text = "Score: " + (InfectedAmount * scoreGain) + "\n\n\t\t" + NormieAmount + "\n\n\t\t" + InfectedAmount + "\n\n\t\t" + (spawnLimit - InfectedAmount - NormieAmount);
         if(NormieAmount == 0)
         {
             PeoplePanel.SetActive(false);
             ScorePanel.SetActive(true) ;
-            ScoreText.text = "Your Score: " + (InfectedAmount * scoreGain);
+            ScoreText.text = "Game Over" + "\n\nYour Score: " + (InfectedAmount * scoreGain);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
