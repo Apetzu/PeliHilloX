@@ -8,7 +8,9 @@ public class InfectedAI : MonoBehaviour {
 	public float wanderRadius;
 	public float wanderTimer;
 	public float DetectorRadius;
+    public float LongDetectorRadius;
     public bool NormieNearby = false;
+    public bool NormieFarby = false;
     public float damage;
     public float chaseSpeed;
     float normalSpeed;
@@ -21,6 +23,7 @@ public class InfectedAI : MonoBehaviour {
 	RaycastHit hit;
     GameObject NormieScript;
 	Collider[] NormieDetected;
+    Collider[] NormieDetectedFar;
     public Animator anime;
     public MeshFilter mess;
     public MeshRenderer messRend;
@@ -56,6 +59,14 @@ public class InfectedAI : MonoBehaviour {
         }
         else 
         {
+            NormieDetectedFar = Physics.OverlapSphere (transform.position, LongDetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1 | 1 << LayerMask.NameToLayer ("Player")));
+            if (NormieDetectedFar.Length > 0)
+            {
+                agent.speed = normalSpeed;
+                Vector3 newPos = NormieDetectedFar[0].transform.position;
+                agent.SetDestination (newPos);
+            }
+
             if (agent.velocity.magnitude < idleLimit)
             {
                 anime.SetInteger("InfectedAnim", 0);
@@ -65,14 +76,17 @@ public class InfectedAI : MonoBehaviour {
 
             mess.mesh = passiveInfected;
             messRend.materials = new Material[2] { passiveInfectedFront, passiveInfectedBack};
-            timer += Time.deltaTime;
-            agent.speed = normalSpeed;
-            if (timer >= wanderTimer) {
+            //timer += Time.deltaTime;
+
+           /* if (timer >= wanderTimer) 
+            {
                 Vector3 newPos = RandomNavSphere (transform.position, wanderRadius, -1);
                 agent.SetDestination (newPos);
                 timer = 0;
-            }
+            }*/
         }
+
+
 	}
 
 
