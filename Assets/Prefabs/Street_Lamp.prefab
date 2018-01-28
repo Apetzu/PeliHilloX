@@ -24,7 +24,7 @@ GameObject:
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1547389557129302
@@ -37,7 +37,6 @@ GameObject:
   - component: {fileID: 4233903567377586}
   - component: {fileID: 33436084476580534}
   - component: {fileID: 23920581625182260}
-  - component: {fileID: 136348056541130380}
   m_Layer: 0
   m_Name: Street_Lamp
   m_TagString: Untagged
@@ -52,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1262035091641652}
   m_LocalRotation: {x: 0.0000059005524, y: -1, z: 0.0000037849031, w: 0.0000029502762}
-  m_LocalPosition: {x: -0, y: -0, z: 11.69}
+  m_LocalPosition: {x: -0, y: -0, z: 11.6900015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233903567377586}
@@ -71,7 +70,7 @@ Transform:
   - {fileID: 4056501226081502}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 180.00002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23920581625182260
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -86,6 +85,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 9d050f180851457409bffd8aff74441c, type: 2}
+  - {fileID: 2100000, guid: 888736bcc3a4f02478c0a48fa5e72212, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,7 +121,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 0.89827585, b: 0.5661765, a: 1}
-  m_Intensity: 3.59
+  m_Intensity: 5
   m_Range: 34.8
   m_SpotAngle: 128.8
   m_CookieSize: 10
@@ -147,16 +147,3 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!136 &136348056541130380
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1547389557129302}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.44
-  m_Height: 12.22
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 5.69}
