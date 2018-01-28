@@ -51,7 +51,7 @@ public class NormieAI : MonoBehaviour {
 
 	void Update () 
 	{
-		InfectedDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Normies") | 1));
+		InfectedDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Normies") | 1 | 1 << LayerMask.NameToLayer("DisappearObject")));
  
 		if (InfectedDetected.Length > 0) 
 		{
@@ -110,17 +110,13 @@ public class NormieAI : MonoBehaviour {
 
         if (health <= 0)
         {
+            // Death
             GameObject BloodPart = (GameObject) Instantiate(bloodSplat, transform.position, bloodSplat.transform.rotation);
             Destroy(BloodPart, 5f);
             Destroy(this.gameObject);
         }
 
         fleeingSpeed = fasterSpeed;
-    }
-
-    void death()
-    {
-        
     }
 
     public void ChangeToInfected()

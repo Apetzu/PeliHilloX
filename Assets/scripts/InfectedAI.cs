@@ -46,7 +46,7 @@ public class InfectedAI : MonoBehaviour {
 
 	void Update () 
 	{
-        NormieDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1 | 1 << LayerMask.NameToLayer ("Player")));
+        NormieDetected = Physics.OverlapSphere (transform.position, DetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1 | 1 << LayerMask.NameToLayer ("Player") | 1 << LayerMask.NameToLayer("DisappearObject")));
 
         if (NormieDetected.Length > 0) 
         {
@@ -59,7 +59,7 @@ public class InfectedAI : MonoBehaviour {
         }
         else 
         {
-            NormieDetectedFar = Physics.OverlapSphere (transform.position, LongDetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1 | 1 << LayerMask.NameToLayer ("Player")));
+            NormieDetectedFar = Physics.OverlapSphere (transform.position, LongDetectorRadius, ~(1 << LayerMask.NameToLayer ("Infected") | 1 | 1 << LayerMask.NameToLayer ("Player") | 1 << LayerMask.NameToLayer("DisappearObject")));
             if (NormieDetectedFar.Length > 0)
             {
                 agent.speed = normalSpeed;
@@ -76,14 +76,6 @@ public class InfectedAI : MonoBehaviour {
 
             mess.mesh = passiveInfected;
             messRend.materials = new Material[2] { passiveInfectedFront, passiveInfectedBack};
-            //timer += Time.deltaTime;
-
-           /* if (timer >= wanderTimer) 
-            {
-                Vector3 newPos = RandomNavSphere (transform.position, wanderRadius, -1);
-                agent.SetDestination (newPos);
-                timer = 0;
-            }*/
         }
 
 
