@@ -16,6 +16,8 @@ public class playerMovement : MonoBehaviour {
     bool flipXZAxes = false;
     [SerializeField]
     float rotationSmoothness = 5;
+    [SerializeField]
+    Animator anim;
 
     Rigidbody rb;                       // Player rigidbody
     Vector3 movDir = Vector3.zero;      // Vector direction where player moves
@@ -45,7 +47,12 @@ public class playerMovement : MonoBehaviour {
         // Player smooth rotation
         if (movDir != Vector3.zero)
         {
+            anim.SetInteger("Moving", 1);
             rb.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movDir), Time.fixedDeltaTime * rotationSmoothness));
+        }
+        else
+        {
+            anim.SetInteger("Moving", 0);
         }
 	}
 

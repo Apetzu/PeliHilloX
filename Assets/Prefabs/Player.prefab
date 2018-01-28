@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4251903017144278}
   - component: {fileID: 33872561761500316}
   - component: {fileID: 23303460820803026}
+  - component: {fileID: 95756100586120270}
   m_Layer: 10
   m_Name: Mesh
   m_TagString: Untagged
@@ -242,6 +243,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1011820679449828}
   m_Enabled: 1
+--- !u!95 &95756100586120270
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1280817483690146}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ca2229e1e4fd5441878622cad8e4c1e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114207972534415770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,6 +289,7 @@ MonoBehaviour:
   flipZAxis: 0
   flipXZAxes: 1
   rotationSmoothness: 5
+  anim: {fileID: 95756100586120270}
 --- !u!114 &114849882765731306
 MonoBehaviour:
   m_ObjectHideFlags: 1
