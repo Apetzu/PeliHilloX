@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224744458144365720}
   - component: {fileID: 114740028691523538}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,11 +38,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d592413d227b6143bb8beefbdf0c0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLimit: 10
+  spawnLimit: 200
   Normie: {fileID: 1337022015244170, guid: 18e13b96902b204469e967a5f3e23cbf, type: 2}
-  MapXSize: 35.86
-  MapZSize: 10
-  navMeshSearchDist: 10
+  MapXSize: 350
+  MapZSize: 500
+  navMeshSearchDist: 1000
   PeopleCount: {fileID: 0}
   PeoplePanel: {fileID: 0}
   ScorePanel: {fileID: 0}
